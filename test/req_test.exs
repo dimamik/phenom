@@ -1,4 +1,6 @@
-defmodule PhenomWeb.ErrorHTMLTest do
+defmodule PhenomWeb.ReqTest do
+  @moduledoc false
+
   use PhenomWeb.ConnCase, async: true
 
   test "no real requests are made" do
