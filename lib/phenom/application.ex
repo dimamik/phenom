@@ -11,6 +11,7 @@ defmodule Phenom.Application do
       PhenomWeb.Telemetry,
       Phenom.Repo,
       {DNSCluster, query: Application.get_env(:phenom, :dns_cluster_query) || :ignore},
+      {Oban, Application.fetch_env!(:phenom, Oban)},
       {Phoenix.PubSub, name: Phenom.PubSub},
       # Start a worker by calling: Phenom.Worker.start_link(arg)
       # {Phenom.Worker, arg},

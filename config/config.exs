@@ -7,6 +7,12 @@
 # General application configuration
 import Config
 
+config :phenom, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10],
+  repo: Phenom.Repo
+
 config :phenom,
   ecto_repos: [Phenom.Repo],
   generators: [timestamp_type: :utc_datetime]
