@@ -78,7 +78,7 @@ defmodule Phenom.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:dotenvy, "~> 1.0"},
       {:bandit, "~> 1.5"},
-      {:ecto_psql_extras, "~> 0.6"}
+      {:ecto_psql_extras, "~> 0.8"}
     ]
   end
 

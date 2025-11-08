@@ -19,7 +19,7 @@ services:
       timeout: 2s
       retries: 10
   phenom:
-    image: index.docker.io/dimamik/phenom
+    image: ghcr.io/dimamik/phenom
     build:
       context: ${PWD}
       dockerfile: Dockerfile
@@ -43,7 +43,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - $HOME/.docker/config.json:/config.json
-    command: --interval 300 --cleanup phenom --scope phenom
+    command: --interval 60 --cleanup phenom --scope phenom
     depends_on:
       - phenom
     restart: unless-stopped
