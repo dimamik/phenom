@@ -27,7 +27,16 @@ defmodule Phenom.MixProject do
 
   def cli do
     [
-      preferred_envs: [precommit: :test]
+      preferred_envs: [
+        precommit: :test,
+        "ecto.migrate": :test,
+        "ecto.reset": :test,
+        "ecto.rollback": :test,
+        "ecto.gen": :test,
+        "test.ci": :test,
+        "test.reset": :test,
+        "test.setup": :test
+      ]
     ]
   end
 
@@ -67,6 +76,7 @@ defmodule Phenom.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
+      {:dotenvy, "~> 1.0"},
       {:bandit, "~> 1.5"}
     ]
   end
@@ -79,6 +89,7 @@ defmodule Phenom.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      "test.setup": ["ecto.create --quiet", "ecto.migrate --quiet"],
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],

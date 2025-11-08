@@ -1,0 +1,61 @@
+services:
+  phenom_postgres:
+    image: pgvector/pgvector:pg17
+    container_name: phenom_postgres
+    restart: always
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    networks:
+      - phenom_network
+    expose:
+      - 5432
+    volumes:
+      - phenom_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 2s
+      retries: 10
+  phenom:
+    image: index.docker.io/dimamik/phenom
+    build:
+      context: ${PWD}
+      dockerfile: Dockerfile
+    container_name: phenom
+    restart: always
+    networks:
+      - nginx_network
+      - phenom_network
+    expose:
+      - 4000
+    depends_on:
+      phenom_postgres:
+        condition: service_healthy
+    env_file:
+      - ${PWD}/.env
+    labels:
+      - "com.centurylinklabs.watchtower.scope=phenom"
+  phenom_watchtower:
+    image: containrrr/watchtower
+    container_name: phenom_watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $HOME/.docker/config.json:/config.json
+    command: --interval 300 --cleanup phenom --scope phenom
+    depends_on:
+      - phenom
+    restart: unless-stopped
+volumes:
+  phenom_db:
+    driver: local
+
+networks:
+  nginx_network:
+    name: nginx_network
+    external: true
+  phenom_network:
+    name: phenom_network
+    driver: bridge
+    internal: true
