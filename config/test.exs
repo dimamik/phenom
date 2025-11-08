@@ -37,3 +37,9 @@ config :phoenix, :plug_init_mode, :runtime
 # Enable helpful, but potentially expensive runtime checks
 config :phoenix_live_view,
   enable_expensive_runtime_checks: true
+
+# Make sure no external requests are made during tests
+config :req,
+  default_options: [
+    plug: {Req.Test, :req_plug}
+  ]
