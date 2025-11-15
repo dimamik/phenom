@@ -1,5 +1,8 @@
 # Phenom ⚡
 
+[![Deploy to Fly](https://img.shields.io/badge/Deploy%20to-Fly-blueviolet?style=for-the-badge&logo=fly.io)](deployment/fly/README.md)
+[![Deploy on VPS](https://img.shields.io/badge/Deploy%20on-VPS-blue?style=for-the-badge&logo=docker)](deployment/vps/README.md)
+
 An opinionated template for your new Phoenix project
 
 ## What's Included
