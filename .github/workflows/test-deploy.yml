@@ -60,7 +60,7 @@ jobs:
             ${{ runner.os }}-mix-${{ env.cache-name }}-
 
       # Define how to cache the `_build` directory. After the first run,
-      # this speeds up tests runs a lot. This includes not re-compiling our
+      # this speeds up test runs a lot. This includes not re-compiling our
       # project's downloaded deps every run.
       - name: Cache compiled build
         id: cache-build
@@ -125,6 +125,7 @@ jobs:
           fi
 
   deploy-fly:
+    # TODO: Not sure if this is needed with fly integration with GitHub
     name: Deploy to Fly.io
     runs-on: ubuntu-latest
     needs: check-deploy
