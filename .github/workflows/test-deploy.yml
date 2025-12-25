@@ -88,6 +88,9 @@ jobs:
       - name: Run credo
         run: mix credo
 
+      - name: Run security checks
+        run: mix test.security
+
       - name: Check for unused dependencies
         run: mix deps.unlock --check-unused
 

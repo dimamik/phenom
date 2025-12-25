@@ -3,190 +3,40 @@
 [![Deploy to Fly](https://img.shields.io/badge/Deploy%20to-Fly-blueviolet?style=for-the-badge&logo=fly.io)](deployment/fly/README.md)
 [![Deploy on VPS](https://img.shields.io/badge/Deploy%20on-VPS-blue?style=for-the-badge&logo=docker)](deployment/vps/README.md)
 
-An opinionated template for your new Phoenix project
+An opinionated Phoenix starter that lets you ship faster: start from a strong, production-ready baseline and focus on your idea instead of re-doing the same setup every time. Your AI agents will thank you.
 
-## What's Included
-
-### Core Stack
-
-- **Phoenix 1.8** - Latest Phoenix with LiveView
-- **PostgreSQL** - With `pgvector` support for vector operations
-- **Tailwind CSS 4** - Modern utility-first CSS (no `tailwind.config.js` needed)
-- **esbuild** - Fast JavaScript bundler
-- **Heroicons** - Beautiful hand-crafted SVG icons
-
-### Background Jobs & Scheduling
-
-- **Oban** - Robust job processing and scheduling
-
-### Development Tools
-
-- **Credo** - Static code analysis for code quality
-- **Phoenix LiveDashboard** - Real-time performance monitoring
-- **Live Reload** - Automatic browser refresh on file changes
-- **Dotenvy** - Environment variable management
-
-### HTTP & APIs
-
-- **Req** - Modern HTTP client (preferred over HTTPoison/Tesla)
-- **Swoosh** - Email delivery
-
-### Deployment Ready
-
-- **Fly.io** - Streamlined deployment with remote builds
-- **VPS/Docker** - GHCR-based deployments with Watchtower auto-updates
-- **GitHub Actions** - Unified CI/CD with automatic deployments
-
-### Monitoring & Observability
-
-- **Telemetry** - Built-in metrics and instrumentation
-- **Ecto PSQLExtras** - PostgreSQL performance insights
-
-## Quick Start
-
-### First Time Setup
-
-#### Option A (recommended): generate a fresh app via Mix
-
-From an existing checkout of `phenom` (this repo):
+## Getting started
 
 ```bash
-mix phenom.new my_app --github my-github-handle
-cd my_app
+# 1. Install the generator as a Mix archive (if not already)
+mix archive.install github dimamik/phenom --force
+
+# 2. Generate a new app
+mix phenom.new my_new_app
+
+# 3. Set it up and run it
+cd my_new_app
 mix setup
 mix phx.server
 ```
 
-This will:
+## What's included
 
-- clone the latest `dimamik/phenom` template into `./my_app`
-- rename `phenom`/`Phenom` occurrences to your app
-- replace `dimamik` with your GitHub handle, so that you can deploy your app's artifacts to GHCR
-- create `.env` from `.env.sample` if it wasn't there
+1. Web - [Phoenix](https://www.phoenixframework.org/) with [LiveView](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html)
+1. Database - [Ecto](https://hexdocs.pm/ecto/Ecto.html) with [Postgres](https://www.postgresql.org/)
+1. Jobs - [Oban](https://hexdocs.pm/oban/Oban.html)
+1. HTTP Requests - [Req](https://hexdocs.pm/req/Req.html)
+1. Code Analysis - [Credo](https://hexdocs.pm/credo/overview.html) and [Sobelow](https://hexdocs.pm/sobelow/Sobelow.html)
+1. CI/CD - [GitHub Actions](https://docs.github.com/actions) and [Fly.io](https://fly.io/docs/) or your own VPS (e.g. [Hetzner](https://www.hetzner.com/cloud/)) with [GHCR](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry) docker images (included)
 
-#### Option B: clone and run the setup script
+## What **will** be included in the future
 
-Visit [`localhost:4000`](http://localhost:4000) 🚀
-
-### Environment Configuration
-
-Update `.env` file in the project root with your database credentials and other secrets.
-
-You can generate PHX_SECRET_KEY_BASE using:
-
-```bash
-mix phx.gen.secret
-```
-
-## Development
-
-### Useful Commands
-
-```bash
-# Run tests
-mix test
-
-# Format code
-mix format
-
-# Run static analysis
-mix credo
-
-# Check for compilation warnings
-mix compile --warnings-as-errors
-
-# Run all pre-commit checks
-mix precommit
-
-# Database operations
-mix ecto.create     # Create database
-mix ecto.migrate    # Run migrations
-mix ecto.rollback   # Rollback last migration
-mix ecto.reset      # Drop, create, and migrate database
-```
-
-## Deployment
-
-Phenom includes two deployment strategies:
-
-### 1. Fly.io (Recommended for Getting Started)
-
-Quick, managed platform with excellent Phoenix support.
-
-**Setup:**
-
-```bash
-fly launch
-fly deploy
-```
-
-📖 [Full Fly.io deployment guide](deployment/fly/README.md)
-
-### 2. VPS with Docker & GHCR
-
-Self-hosted option using GitHub Container Registry and Docker Compose.
-
-**Features:**
-
-- Automatic deployments via GitHub Actions
-- Watchtower for updates
-- Nginx reverse proxy with automatic HTTPS
-- Full control over infrastructure
-
-📖 [Full VPS deployment guide](deployment/vps/README.md)
-
-### Unified CI/CD
-
-The repository includes a unified GitHub Actions workflow (`.github/workflows/test-deploy.yml`) that:
-
-- ✅ Runs tests on all branches
-- ✅ Deploys to Fly.io (if `FLY_API_TOKEN` secret exists)
-- ✅ Builds and pushes Docker images to GHCR (if no Fly.io token)
-- ✅ Shows all status checks on commits
-
-**To enable Fly.io deployment:**
-Add the `FLY_API_TOKEN` secret to your GitHub repository.
-
-**To enable VPS/Docker deployment:**
-If you're not deploying to Fly.io, images will automatically be pushed to GHCR.
-
-## Project Structure
-
-```
-phenom/
-├── lib/
-│   ├── phenom/          # Business logic & contexts
-│   ├── phenom_web/      # Web interface (controllers, live views, components)
-│   └── phenom_web.ex    # Web-related imports & definitions
-├── priv/
-│   ├── repo/migrations/ # Database migrations
-│   ├── repo/seeds.exs   # Seed data
-│   └── static/          # Static assets
-├── assets/
-│   ├── js/              # JavaScript code
-│   ├── css/             # CSS stylesheets
-│   └── vendor/          # Third-party JS libraries
-├── deployment/
-│   ├── fly/             # Fly.io deployment guides
-│   └── vps/             # VPS/Docker deployment guides
-└── test/                # Test files
-```
-
-## Design Decisions
-
-### Why These Libraries?
-
-- **Req over HTTPoison/Tesla** - Modern, well-maintained HTTP client with better ergonomics
-- **Oban** - Battle-tested job processing with persistence and retries
-- **Credo** - Consistent code style across the team
-- **Dotenvy** - Simple `.env` file support for local development
-
-### Phoenix 1.8 Conventions
-
-- Uses function components (`def component(assigns)`) over legacy `Phoenix.View`
-- LiveView-first approach with server-rendered HTML
-- Collocated CSS/JS in `assets/` directory
-- Unified testing with `Phoenix.LiveViewTest` and `LazyHTML`
+1. Safer default CSP settings (so we don't need to skip them in Sobelow)
+1. Live Debugger
+1. Oban Web dashboard
+1. Authorization framework
+1. Better LLM instructions and pre-defined tooling
+1. And many, many more
 
 ## Contributing
 

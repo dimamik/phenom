@@ -49,19 +49,12 @@ defmodule Phenom.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:oban, "~> 2.0"},
-      {:phoenix, "~> 1.8.1"},
-      {:phoenix_ecto, "~> 4.5"},
+      {:bandit, "~> 1.5"},
+      {:dns_cluster, "~> 0.2.0"},
+      {:dotenvy, "~> 1.0"},
+      {:ecto_psql_extras, "~> 0.8"},
       {:ecto_sql, "~> 3.13"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 1.1.0"},
-      {:lazy_html, ">= 0.1.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:gettext, "~> 0.26"},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.2.0",
@@ -69,16 +62,24 @@ defmodule Phenom.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:swoosh, "~> 1.16"},
+      {:jason, "~> 1.2"},
+      {:oban, "~> 2.0"},
+      {:phoenix, "~> 1.8.1"},
+      {:phoenix_ecto, "~> 4.5"},
+      {:phoenix_html, "~> 4.1"},
+      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:phoenix_live_view, "~> 1.1.0"},
+      {:postgrex, ">= 0.0.0"},
       {:req, "~> 0.5"},
+      {:swoosh, "~> 1.16"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.26"},
-      {:jason, "~> 1.2"},
-      {:dns_cluster, "~> 0.2.0"},
-      {:dotenvy, "~> 1.0"},
-      {:bandit, "~> 1.5"},
-      {:ecto_psql_extras, "~> 0.8"}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
+      {:lazy_html, ">= 0.1.0", only: :test},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:sobelow, "~> 0.14", only: [:dev, :test], runtime: false, warn_if_outdated: true},
+      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev}
     ]
   end
 
@@ -102,6 +103,7 @@ defmodule Phenom.MixProject do
         "esbuild phenom --minify",
         "phx.digest"
       ],
+      "test.security": ["sobelow --threshold high --ignore Config.HTTPS,Config.CSP"],
       precommit: [
         "compile --warning-as-errors",
         "deps.unlock --unused",
