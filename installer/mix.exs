@@ -45,15 +45,15 @@ defmodule Phenom.MixProject do
         "GitHub" => @source_url,
         "Changelog" => "#{@source_url}/blob/main/CHANGELOG.md"
       },
-      files: ~w(lib .formatter.exs mix.exs ../README.md ../LICENSE ../img)
+      files: ~w(lib .formatter.exs mix.exs README.md LICENSE img)
     ]
   end
 
   defp docs do
     [
       main: "readme",
-      logo: "../img/logo.png",
-      extras: ["../README.md": [filename: "readme", title: "Phenom"]],
+      logo: "img/logo.png",
+      extras: ["README.md": [filename: "readme", title: "Phenom"]],
       source_ref: "v#{@version}"
     ]
   end

@@ -19,12 +19,12 @@ defmodule Mix.Tasks.Phenom.New.Generator do
   @old_app_module "Phenom"
   @old_github_handle "dimamik"
 
-  @type options :: %{
-          required(:app_name) => String.t(),
-          optional(:github) => String.t() | nil,
-          required(:branch) => String.t(),
-          optional(:template_repo) => String.t()
-        }
+  @typep options :: %{
+           required(:app_name) => String.t(),
+           optional(:github) => String.t() | nil,
+           required(:branch) => String.t(),
+           optional(:template_repo) => String.t()
+         }
 
   @spec run(options()) :: :ok
   def run(%{app_name: app_name} = opts) do
@@ -79,7 +79,8 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     Enum.each(@banner_lines, fn line -> shell.info(line) end)
   end
 
-  defp validate_app_name!(name) do
+  @doc false
+  def validate_app_name!(name) do
     if Regex.match?(~r/^[a-z][a-z0-9_]*$/, name) do
       :ok
     else
@@ -87,7 +88,8 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     end
   end
 
-  defp validate_github_handle!(handle) do
+  @doc false
+  def validate_github_handle!(handle) do
     if Regex.match?(~r/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/, handle) do
       :ok
     else
@@ -107,7 +109,8 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     end
   end
 
-  defp snake_to_pascal(value) do
+  @doc false
+  def snake_to_pascal(value) do
     value
     |> String.split("_", trim: true)
     |> Enum.map_join(fn part ->
@@ -127,7 +130,8 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     end
   end
 
-  defp rename_files!(root, old_string, new_string) do
+  @doc false
+  def rename_files!(root, old_string, new_string) do
     for path <- list_paths_depth_first(root),
         rel_path = Path.relative_to(path, root),
         String.contains?(rel_path, old_string) do
@@ -162,7 +166,8 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     end
   end
 
-  defp replace_content!(root, replacements) when is_map(replacements) do
+  @doc false
+  def replace_content!(root, replacements) when is_map(replacements) do
     for path <- list_files(root), text_file?(path) do
       content = File.read!(path)
 
