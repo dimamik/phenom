@@ -134,9 +134,7 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     for path <- list_paths_depth_first(root),
         rel_path = Path.relative_to(path, root),
         String.contains?(rel_path, old_string) do
-      new_rel_path =
-        String.replace(rel_path, old_string, new_string)
-
+      new_rel_path = String.replace(rel_path, old_string, new_string)
       new_path = Path.join(root, new_rel_path)
 
       # When traversing depth-first, children may already have been renamed into
@@ -144,7 +142,26 @@ defmodule Mix.Tasks.Phenom.New.Generator do
       if path != new_path and not File.exists?(new_path) do
         File.mkdir_p!(Path.dirname(new_path))
         File.rename!(path, new_path)
+        cleanup_empty_parents(Path.dirname(path), root)
       end
+    end
+  end
+
+  # Recursively remove empty parent directories up to (but not including) root
+  defp cleanup_empty_parents(dir, root) do
+    cond do
+      dir == root ->
+        :ok
+
+      not File.dir?(dir) ->
+        :ok
+
+      File.ls!(dir) == [] ->
+        File.rmdir!(dir)
+        cleanup_empty_parents(Path.dirname(dir), root)
+
+      true ->
+        :ok
     end
   end
 
