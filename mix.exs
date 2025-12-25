@@ -87,13 +87,17 @@ defmodule Phenom.MixProject do
     ]
   end
 
+  # This is Phenom-specific documentation configuration
   defp docs do
     [
       main: "readme",
-      extras: ["README.md"],
-      groups_for_docs: [],
-      groups_for_modules: [],
-      groups_for_extras: []
+      logo: "img/logo.png",
+      extras: [{:"README.md", title: "Phenom"}],
+      assets: %{"img" => "img"},
+      api_reference: false,
+      filter_modules: fn mod, _ ->
+        mod |> Module.split() |> hd() == "Mix"
+      end
     ]
   end
 
