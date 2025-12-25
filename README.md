@@ -1,9 +1,19 @@
-# Phenom ⚡
+<p align="center">
+	<img src="img/logo-rich.png" alt="Phenom logo" width="160" />
+</p>
 
-[![Deploy to Fly](https://img.shields.io/badge/Deploy%20to-Fly-blueviolet?style=for-the-badge&logo=fly.io)](deployment/fly/README.md)
-[![Deploy on VPS](https://img.shields.io/badge/Deploy%20on-VPS-blue?style=for-the-badge&logo=docker)](deployment/vps/README.md)
+<p align="center">
+	<a href="https://github.com/dimamik/phenom/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License - MIT" /></a>
+	<a href="https://hex.pm/packages/phenom"><img src="https://img.shields.io/hexpm/v/phenom.svg" alt="Hex version" /></a>
+	<a href="https://github.com/dimamik/phenom/blob/main/deployment/fly/README.md"><img src="https://img.shields.io/badge/Deploy%20to-Fly-blueviolet?logo=fly.io" alt="Deploy to Fly" /></a>
+	<a href="https://github.com/dimamik/phenom/blob/main/deployment/vps/README.md"><img src="https://img.shields.io/badge/Deploy%20on-VPS-blue?logo=docker" alt="Deploy on VPS" /></a>
+</p>
 
-An opinionated Phoenix starter that lets you ship faster: start from a strong, production-ready baseline and focus on your idea instead of re-doing the same setup every time. Your AI agents will thank you.
+# Phenom
+
+An opinionated Phoenix starter designed for speed without sacrificing quality. Spin up a PoC in minutes, then scale it into a production-grade application — the foundation is already there.
+
+Built-in patterns help you (and your AI coding agents) extend the app while following industry best practices, so you write better software from day one.
 
 ## Getting started
 
@@ -31,9 +41,13 @@ mix phx.server
 
 ## What **will** be included in the future
 
+1. More robust and secure installation. I'd lean towards using hex to version and distribute the source code.
 1. Safer default CSP settings (so we don't need to skip them in Sobelow)
 1. Live Debugger
-1. Authorization framework
+1. A way to test Req requests
+1. Observability configuration (ideally - something free or self-hosted)
+1. A way to define new views/components, so LLMs follow established patterns
+1. Authorization (Probably some variation of Phoenix auth). Use password-first approach, since emails are harder to set up
 1. Better LLM instructions and pre-defined tooling
 1. Improved favicons for better branding
 1. And many, many more
@@ -49,7 +63,3 @@ Feel free to open an issue or submit a pull request if you find bugs or want to 
 - **Phoenix Docs:** https://hexdocs.pm/phoenix
 - **Elixir Forum:** https://elixirforum.com/c/phoenix-forum
 - **Phoenix Source:** https://github.com/phoenixframework/phoenix
-
-## License
-
-MIT
