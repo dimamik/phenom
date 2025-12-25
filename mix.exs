@@ -77,13 +77,14 @@ defmodule Phenom.MixProject do
       {:ecto_psql_extras, "~> 0.8"},
       {:ecto_sql, "~> 3.13"},
       {:gettext, "~> 0.26"},
+      # We can't publish a package depending on a GitHub repo, so we're
+      # readding this dep until we figure out a better way.
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.2.0",
        sparse: "optimized",
        app: false,
        compile: false,
-       only: :dev,
        depth: 1},
       {:jason, "~> 1.2"},
       {:oban, "~> 2.0"},
