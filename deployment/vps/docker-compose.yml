@@ -4,8 +4,6 @@ services:
     image: postgres:17.7-alpine
     container_name: phenom_postgres
     restart: always
-    env_file:
-      - ${PWD}/.env
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
@@ -23,9 +21,7 @@ services:
       retries: 10
   phenom:
     image: ghcr.io/dimamik/phenom
-    build:
-      context: ${PWD}
-      dockerfile: Dockerfile
+    container_name: phenom
     restart: always
     networks:
       - nginx_network
