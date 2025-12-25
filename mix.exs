@@ -10,6 +10,7 @@ defmodule Phenom.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      docs: docs(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader]
     ]
@@ -76,10 +77,21 @@ defmodule Phenom.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:lazy_html, ">= 0.1.0", only: :test},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:sobelow, "~> 0.14", only: [:dev, :test], runtime: false, warn_if_outdated: true},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md"],
+      groups_for_docs: [],
+      groups_for_modules: [],
+      groups_for_extras: []
     ]
   end
 

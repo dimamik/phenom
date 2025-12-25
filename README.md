@@ -36,6 +36,7 @@ mix phx.server
 1. Oban Web dashboard
 1. Authorization framework
 1. Better LLM instructions and pre-defined tooling
+1. Improved favicons for better branding
 1. And many, many more
 
 ## Contributing
