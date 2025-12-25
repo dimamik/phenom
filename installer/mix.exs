@@ -1,7 +1,7 @@
 defmodule Phenom.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0"
   @source_url "https://github.com/dimamik/phenom"
 
   def project do
@@ -10,6 +10,7 @@ defmodule Phenom.MixProject do
       version: @version,
       elixir: "~> 1.15",
       start_permanent: false,
+      aliases: aliases(),
       deps: deps(),
       package: package(),
       description: description(),
@@ -19,17 +20,13 @@ defmodule Phenom.MixProject do
     ]
   end
 
-  def cli do
-    [preferred_envs: [docs: :docs]]
-  end
-
   def application do
     [extra_applications: []]
   end
 
   defp deps do
     [
-      {:ex_doc, ">= 0.0.0", only: :docs, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
@@ -45,7 +42,7 @@ defmodule Phenom.MixProject do
         "GitHub" => @source_url,
         "Changelog" => "#{@source_url}/blob/main/CHANGELOG.md"
       },
-      files: ~w(lib .formatter.exs mix.exs README.md LICENSE img)
+      files: ~w(lib .formatter.exs mix.exs README.md CHANGELOG.md LICENSE img)
     ]
   end
 
@@ -54,7 +51,19 @@ defmodule Phenom.MixProject do
       main: "readme",
       logo: "img/logo.png",
       extras: ["README.md": [filename: "readme", title: "Phenom"]],
-      source_ref: "v#{@version}"
+      source_ref: "v#{@version}",
+      source_url_pattern: "#{@source_url}/blob/v#{@version}/installer/%{path}#L%{line}"
+    ]
+  end
+
+  defp aliases do
+    [
+      publish: [
+        "cmd git tag v#{@version}",
+        "cmd git push",
+        "cmd git push --tags",
+        "hex.publish --yes"
+      ]
     ]
   end
 end
