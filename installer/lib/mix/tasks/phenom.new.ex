@@ -25,8 +25,6 @@ defmodule Mix.Tasks.Phenom.New do
 
   @impl Mix.Task
   def run(argv) do
-    Mix.Task.run("app.start")
-
     {opts, args, invalid} = OptionParser.parse(argv, strict: @switches)
 
     if invalid != [] do
