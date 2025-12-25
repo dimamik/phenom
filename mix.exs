@@ -132,7 +132,7 @@ defmodule Phenom.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      release: [
+      publish: [
         "cmd git tag v#{@version}",
         "cmd git push",
         "cmd git push --tags",
