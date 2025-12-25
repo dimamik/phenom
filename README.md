@@ -46,26 +46,25 @@ An opinionated template for your new Phoenix project
 
 ### First Time Setup
 
-1. **Clone and customize:**
+#### Option A (recommended): generate a fresh app via Mix
 
-   ```bash
-   git clone https://github.com/dimamik/phenom.git my_app
-   cd my_app
-   ./setup
-   ```
+From an existing checkout of `phenom` (this repo):
 
-   This will prompt you to rename the app and set your GitHub handle.
+```bash
+mix phenom.new my_app --github my-github-handle
+cd my_app
+mix setup
+mix phx.server
+```
 
-2. **Install dependencies:**
+This will:
 
-   ```bash
-   mix setup
-   ```
+- clone the latest `dimamik/phenom` template into `./my_app`
+- rename `phenom`/`Phenom` occurrences to your app
+- replace `dimamik` with your GitHub handle, so that you can deploy your app's artifacts to GHCR
+- create `.env` from `.env.sample` if it wasn't there
 
-3. **Start the server:**
-   ```bash
-   mix phx.server
-   ```
+#### Option B: clone and run the setup script
 
 Visit [`localhost:4000`](http://localhost:4000) 🚀
 
