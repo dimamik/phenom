@@ -1,18 +1,39 @@
 defmodule Phenom.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+  @source_url "https://github.com/dimamik/phenom"
+
   def project do
     [
       app: :phenom,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
       docs: docs(),
+      package: package(),
+      description: description(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader]
+    ]
+  end
+
+  defp description do
+    "Phoenix starter you'd build yourself, if you had the time."
+  end
+
+  defp package do
+    [
+      name: "phenom",
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => @source_url,
+        "Changelog" => "#{@source_url}/blob/main/CHANGELOG.md"
+      },
+      files: ~w(lib priv .formatter.exs mix.exs README.md LICENSE CHANGELOG.md)
     ]
   end
 
