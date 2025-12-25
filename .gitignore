@@ -35,5 +35,10 @@ phenom-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore environment variable files.
 .env
+
+# Ignore IDE specific files.
+.DS_Store
+
 
