@@ -48,10 +48,9 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     shell.info("Cloning #{template_repo} into #{dest}...")
     git_clone!(template_repo, dest, opts.branch)
 
-    # Remove template git history to avoid accidental pushes.
+    # Remove template git history and installer directory since these are
+    # configuration artefacts
     File.rm_rf!(Path.join(dest, ".git"))
-
-    # Remove installer directory - users don't need the archive source
     File.rm_rf!(Path.join(dest, "installer"))
 
     shell.info("Customizing project...")

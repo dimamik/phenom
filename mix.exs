@@ -1,39 +1,17 @@
 defmodule Phenom.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
-  @source_url "https://github.com/dimamik/phenom"
-
   def project do
     [
       app: :phenom,
-      version: @version,
+      version: "0.1.0",
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      docs: docs(),
-      package: package(),
-      description: description(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader]
-    ]
-  end
-
-  defp description do
-    "Phoenix starter you'd build yourself, if you had the time."
-  end
-
-  defp package do
-    [
-      name: "phenom",
-      licenses: ["MIT"],
-      links: %{
-        "GitHub" => @source_url,
-        "Changelog" => "#{@source_url}/blob/main/CHANGELOG.md"
-      },
-      files: ~w(lib priv img .formatter.exs mix.exs README.md LICENSE CHANGELOG.md)
     ]
   end
 
@@ -110,20 +88,6 @@ defmodule Phenom.MixProject do
     ]
   end
 
-  # This is Phenom-specific documentation configuration
-  defp docs do
-    [
-      main: "readme",
-      logo: "img/logo.png",
-      extras: [{:"README.md", title: "Phenom"}],
-      assets: %{"img" => "img"},
-      api_reference: false,
-      filter_modules: fn mod, _ ->
-        mod |> Module.split() |> hd() == "Mix"
-      end
-    ]
-  end
-
   # Aliases are shortcuts or tasks specific to the current project.
   # For example, to install project dependencies and perform other setup tasks, run:
   #
@@ -132,12 +96,6 @@ defmodule Phenom.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      publish: [
-        "cmd git tag v#{@version}",
-        "cmd git push",
-        "cmd git push --tags",
-        "hex.publish --yes"
-      ],
       "test.setup": ["ecto.create --quiet", "ecto.migrate --quiet"],
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],

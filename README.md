@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="img/logo-rich.png" alt="Phenom logo" width="160" />
+	<img src="https://raw.githubusercontent.com/dimamik/phenom/main/img/logo-rich.png" alt="Phenom logo" width="160" />
 </p>
 
 <p align="center">
