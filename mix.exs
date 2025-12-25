@@ -83,6 +83,7 @@ defmodule Phenom.MixProject do
        sparse: "optimized",
        app: false,
        compile: false,
+       only: :dev,
        depth: 1},
       {:jason, "~> 1.2"},
       {:oban, "~> 2.0"},
@@ -130,6 +131,12 @@ defmodule Phenom.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      release: [
+        "cmd git tag v#{@version}",
+        "cmd git push",
+        "cmd git push --tags",
+        "hex.publish --yes"
+      ],
       "test.setup": ["ecto.create --quiet", "ecto.migrate --quiet"],
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
