@@ -33,7 +33,7 @@ defmodule Phenom.MixProject do
         "GitHub" => @source_url,
         "Changelog" => "#{@source_url}/blob/main/CHANGELOG.md"
       },
-      files: ~w(lib priv .formatter.exs mix.exs README.md LICENSE CHANGELOG.md)
+      files: ~w(lib priv img .formatter.exs mix.exs README.md LICENSE CHANGELOG.md)
     ]
   end
 
