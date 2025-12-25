@@ -24,7 +24,7 @@ mix phx.server
 
 1. Web - [Phoenix](https://www.phoenixframework.org/) with [LiveView](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html)
 1. Database - [Ecto](https://hexdocs.pm/ecto/Ecto.html) with [Postgres](https://www.postgresql.org/)
-1. Jobs - [Oban](https://hexdocs.pm/oban/Oban.html)
+1. Jobs - [Oban](https://hexdocs.pm/oban/Oban.html) and [Oban Web (dashboard)](https://hexdocs.pm/oban_web/installation.html)
 1. HTTP Requests - [Req](https://hexdocs.pm/req/Req.html)
 1. Code Analysis - [Credo](https://hexdocs.pm/credo/overview.html) and [Sobelow](https://hexdocs.pm/sobelow/Sobelow.html)
 1. CI/CD - [GitHub Actions](https://docs.github.com/actions) and [Fly.io](https://fly.io/docs/) or your own VPS (e.g. [Hetzner](https://www.hetzner.com/cloud/)) with [GHCR](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry) docker images (included)
