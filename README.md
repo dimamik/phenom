@@ -33,7 +33,6 @@ mix phx.server
 
 1. Safer default CSP settings (so we don't need to skip them in Sobelow)
 1. Live Debugger
-1. Oban Web dashboard
 1. Authorization framework
 1. Better LLM instructions and pre-defined tooling
 1. Improved favicons for better branding
