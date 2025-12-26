@@ -40,7 +40,7 @@ defmodule Phenom.MixProject do
       licenses: ["MIT"],
       links: %{
         "GitHub" => @source_url,
-        "Changelog" => "#{@source_url}/blob/main/CHANGELOG.md"
+        "Changelog" => "#{@source_url}/blob/main/installer/CHANGELOG.md"
       },
       files: ~w(lib .formatter.exs mix.exs README.md CHANGELOG.md LICENSE img)
     ]

@@ -19,7 +19,7 @@ Built-in patterns help you (and your AI coding agents) extend the app while foll
 
 ```bash
 # 1. Install the generator as a Mix archive (if not already)
-mix archive.install github dimamik/phenom --force
+mix archive.install hex phenom --force
 
 # 2. Generate a new app
 mix phenom.new my_new_app
