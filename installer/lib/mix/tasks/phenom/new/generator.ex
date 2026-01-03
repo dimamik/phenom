@@ -51,6 +51,7 @@ defmodule Mix.Tasks.Phenom.New.Generator do
     # Remove template git history and installer directory since these are
     # configuration artefacts
     File.rm_rf!(Path.join(dest, ".git"))
+    File.rm_rf!(Path.join(dest, "LICENSE"))
     File.rm_rf!(Path.join(dest, "installer"))
 
     shell.info("Customizing project...")
