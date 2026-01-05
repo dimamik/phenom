@@ -224,7 +224,7 @@ defmodule Mix.Tasks.Phenom.New.Generator do
 
   defp excluded_dir?(path) do
     base = Path.basename(path)
-    base in [".git", "deps", "_build", "node_modules"] or String.starts_with?(base, ".")
+    base in [".git", "deps", "_build", "node_modules"]
   end
 
   defp text_file?(path) do
@@ -248,6 +248,7 @@ defmodule Mix.Tasks.Phenom.New.Generator do
       ".yml",
       ".yaml",
       ".sh",
+      ".bat",
       ".dockerfile",
       ".lock",
       ""
