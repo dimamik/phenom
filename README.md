@@ -41,7 +41,6 @@ mix phx.server
 
 ## What **will** be included in the future
 
-1. More robust and secure installation. I'd lean towards using hex to version and distribute the source code.
 1. Safer default CSP settings (so we don't need to skip them in Sobelow)
 1. Live Debugger
 1. A way to test Req requests
