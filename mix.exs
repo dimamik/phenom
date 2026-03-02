@@ -29,7 +29,6 @@ defmodule Phenom.MixProject do
     [
       preferred_envs: [
         precommit: :test,
-        "ecto.migrate": :test,
         "ecto.reset": :test,
         "ecto.rollback": :test,
         "ecto.gen": :test,
