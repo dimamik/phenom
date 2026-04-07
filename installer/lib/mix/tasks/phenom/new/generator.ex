@@ -19,6 +19,8 @@ defmodule Mix.Tasks.Phenom.New.Generator do
   @old_app_module "Phenom"
   @old_github_handle "dimamik"
 
+  @preserve_marker_regex ~r/<%!-- phenom:preserve --%>.*?<%!-- \/phenom:preserve --%>/s
+
   @typep options :: %{
            required(:app_name) => String.t(),
            optional(:github) => String.t() | nil,
@@ -173,7 +175,18 @@ defmodule Mix.Tasks.Phenom.New.Generator do
       content = File.read!(path)
 
       new_content =
-        Enum.reduce(replacements, content, fn {from, to}, acc -> String.replace(acc, from, to) end)
+        @preserve_marker_regex
+        |> Regex.split(content, include_captures: true)
+        |> Enum.map(fn segment ->
+          if Regex.match?(@preserve_marker_regex, segment) do
+            segment
+          else
+            Enum.reduce(replacements, segment, fn {from, to}, acc ->
+              String.replace(acc, from, to)
+            end)
+          end
+        end)
+        |> Enum.join()
 
       File.write!(path, new_content)
     end

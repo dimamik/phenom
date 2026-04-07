@@ -195,6 +195,30 @@ defmodule Mix.Tasks.Phenom.New.GeneratorTest do
       assert content =~ ~s(github: "myuser")
     end
 
+    test "preserves content inside phenom:preserve markers", %{tmp_dir: tmp_dir} do
+      File.write!(Path.join(tmp_dir, "page.html.heex"), """
+      <div>
+        <%!-- phenom:preserve --%>
+        <a href="https://github.com/dimamik/phenom">mix phenom.new</a>
+        <%!-- /phenom:preserve --%>
+        <a href="https://github.com/dimamik/phenom">GitHub</a>
+      </div>
+      """)
+
+      Generator.replace_content!(tmp_dir, %{
+        "Phenom" => "MyApp",
+        "phenom" => "my_app",
+        "dimamik" => "myuser"
+      })
+
+      content = File.read!(Path.join(tmp_dir, "page.html.heex"))
+      # Preserved block is untouched
+      assert content =~ "github.com/dimamik/phenom"
+      assert content =~ "mix phenom.new"
+      # Non-preserved link is replaced
+      assert content =~ "github.com/myuser/my_app"
+    end
+
     test "skips binary files", %{tmp_dir: tmp_dir} do
       binary_content = <<0, 1, 2, 3, 80, 104, 101, 110, 111, 109>>
       File.write!(Path.join(tmp_dir, "image.png"), binary_content)
