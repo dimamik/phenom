@@ -53,7 +53,7 @@ defmodule Phenom.MixProject do
       {:dotenvy, "~> 1.0"},
       {:ecto_psql_extras, "~> 0.8"},
       {:ecto_sql, "~> 3.13"},
-      {:gettext, "~> 0.26"},
+      {:gettext, "~> 1.0"},
       # We can't publish a package depending on a GitHub repo, so we're
       # readding this dep until we figure out a better way.
       {:heroicons,
