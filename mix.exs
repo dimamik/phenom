@@ -53,7 +53,7 @@ defmodule Phenom.MixProject do
       {:dotenvy, "~> 1.0"},
       {:ecto_psql_extras, "~> 0.8"},
       {:ecto_sql, "~> 3.13"},
-      {:gettext, "~> 0.26"},
+      {:gettext, "~> 1.0"},
       # We can't publish a package depending on a GitHub repo, so we're
       # readding this dep until we figure out a better way.
       {:heroicons,
@@ -68,10 +68,10 @@ defmodule Phenom.MixProject do
       {:phoenix, "~> 1.8.1"},
       {:phoenix_ecto, "~> 4.5"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:phoenix_live_view, "~> 1.1.0"},
+      {:phoenix_live_dashboard, "~> 0.9"},
+      {:phoenix_live_view, "~> 1.2"},
       {:postgrex, ">= 0.0.0"},
-      {:req, "~> 0.5"},
+      {:req, "~> 0.7"},
       {:oban_web, "~> 2.11"},
       {:swoosh, "~> 1.16"},
       {:telemetry_metrics, "~> 1.0"},
@@ -82,8 +82,8 @@ defmodule Phenom.MixProject do
       {:igniter, "~> 0.7", only: [:dev]},
       {:lazy_html, ">= 0.1.0", only: :test},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:sobelow, "~> 0.14", only: [:dev, :test], runtime: false, warn_if_outdated: true},
-      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev}
+      {:sobelow, "~> 0.15", only: [:dev, :test], runtime: false, warn_if_outdated: true},
+      {:tailwind, "~> 0.5", runtime: Mix.env() == :dev}
     ]
   end
 
