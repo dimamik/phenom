@@ -24,7 +24,8 @@ defmodule PhenomWeb.Endpoint do
     at: "/",
     from: :phenom,
     gzip: not code_reloading?,
-    only: PhenomWeb.static_paths()
+    only: PhenomWeb.static_paths(),
+    raise_on_missing_only: code_reloading?
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

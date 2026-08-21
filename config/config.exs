@@ -11,6 +11,7 @@ config :phenom, Oban,
   engine: Oban.Engines.Basic,
   notifier: Oban.Notifiers.Postgres,
   queues: [default: 10],
+  plugins: [Oban.Plugins.Pruner, Oban.Plugins.Lifeline],
   repo: Phenom.Repo
 
 config :phenom,
@@ -27,6 +28,11 @@ config :phenom, PhenomWeb.Endpoint,
   ],
   pubsub_server: Phenom.PubSub,
   live_view: [signing_salt: "7cdr21He"]
+
+# Configure LiveView
+config :phoenix_live_view,
+  # the attribute set on all root tags. Used for Phoenix.LiveView.ColocatedCSS.
+  root_tag_attribute: "phx-r"
 
 # Configures the mailer
 #

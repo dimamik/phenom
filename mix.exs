@@ -5,7 +5,7 @@ defmodule Phenom.MixProject do
     [
       app: :phenom,
       version: "0.1.0",
-      elixir: "~> 1.15",
+      elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -107,9 +107,9 @@ defmodule Phenom.MixProject do
         "esbuild phenom --minify",
         "phx.digest"
       ],
-      "test.security": ["sobelow --threshold high --ignore Config.HTTPS,Config.CSP"],
+      "test.security": ["sobelow --threshold high --ignore Config.CSP"],
       precommit: [
-        "compile --warning-as-errors",
+        "compile --warnings-as-errors",
         "deps.unlock --unused",
         "format",
         "credo",
