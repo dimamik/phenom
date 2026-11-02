@@ -11,7 +11,8 @@ config :phenom, Oban,
   engine: Oban.Engines.Basic,
   notifier: Oban.Notifiers.Postgres,
   queues: [default: 10],
-  plugins: [Oban.Plugins.Pruner, Oban.Plugins.Lifeline],
+  pruner: Oban.Pruner,
+  lifeline: Oban.Lifeline,
   repo: Phenom.Repo
 
 config :phenom,

@@ -6,3 +6,15 @@ updates:
       interval: "weekly"
     insecure-external-code-execution: allow
     open-pull-requests-limit: 10
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker-compose"
+    directory: "/deployment/vps"
+    schedule:
+      interval: "weekly"
+    ignore:
+      # Major Postgres upgrades need a manual pg_upgrade of the existing volume
+      - dependency-name: "postgres"
+        update-types: ["version-update:semver-major"]

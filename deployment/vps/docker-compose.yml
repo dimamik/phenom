@@ -1,7 +1,7 @@
 name: phenom
 services:
   phenom_postgres:
-    image: postgres:17.7-alpine
+    image: postgres:17.11-alpine
     container_name: phenom_postgres
     restart: always
     environment:
@@ -36,7 +36,7 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.scope=phenom"
   phenom_watchtower:
-    image: containrrr/watchtower
+    image: nickfedor/watchtower:1.23.2@sha256:62fb91130ddb493f869cad7e198fa260dd16c5da293ed092cbd5d8781566f7a6
     container_name: phenom_watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

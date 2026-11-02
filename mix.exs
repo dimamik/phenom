@@ -49,7 +49,7 @@ defmodule Phenom.MixProject do
   defp deps do
     [
       {:bandit, "~> 1.5"},
-      {:dns_cluster, "~> 0.2.0"},
+      {:dns_cluster, "~> 0.3"},
       {:dotenvy, "~> 1.0"},
       {:ecto_psql_extras, "~> 0.8"},
       {:ecto_sql, "~> 3.13"},
