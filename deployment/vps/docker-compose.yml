@@ -36,7 +36,7 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.scope=phenom"
   phenom_watchtower:
-    image: nickfedor/watchtower:1.23.2@sha256:62fb91130ddb493f869cad7e198fa260dd16c5da293ed092cbd5d8781566f7a6
+    image: nickfedor/watchtower:1.24.1@sha256:617a7d5523280cb73adac4d7977604afbe66b7ea86211f2ae0cbfa2043041d61
     container_name: phenom_watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
