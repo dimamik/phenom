@@ -1,7 +1,7 @@
 name: phenom
 services:
   phenom_postgres:
-    image: postgres:17.11-alpine
+    image: postgres:17.12-alpine
     container_name: phenom_postgres
     restart: always
     environment:
